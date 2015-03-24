@@ -1,0 +1,159 @@
+[suvi@XuBingbingdeMacBook-Air /opt/local/etc/samba3]$ redis-cli PING
+PONG
+[suvi@XuBingbingdeMacBook-Air /opt/local/etc/samba3]$ redis-cli
+127.0.0.1:6379> PING
+PONG
+127.0.0.1:6379> ECHO hi
+"hi"
+127.0.0.1:6379> ffdsf
+(error) ERR unknown command 'ffdsf'
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379> dbsize
+(integer) 0
+127.0.0.1:6379> foo
+(error) ERR unknown command 'foo'
+127.0.0.1:6379> incr foo
+(integer) 1
+127.0.0.1:6379> incr foo
+(integer) 2
+127.0.0.1:6379> get foo
+"2"
+127.0.0.1:6379> get noexists
+(nil)
+127.0.0.1:6379> keys *
+1) "foo"
+127.0.0.1:6379> config get loglevel
+1) "loglevel"
+2) "notice"
+127.0.0.1:6379> select 1
+OK
+127.0.0.1:6379[1]> get foo
+(nil)
+127.0.0.1:6379[1]> select 0
+OK
+127.0.0.1:6379> get foo
+"2"
+127.0.0.1:6379> key *
+(error) ERR unknown command 'key'
+127.0.0.1:6379> kekys *
+(error) ERR unknown command 'kekys'
+127.0.0.1:6379> keys *
+1) "foo"
+127.0.0.1:6379> set bar 1
+OK
+127.0.0.1:6379> keys *
+1) "bar"
+2) "foo"
+127.0.0.1:6379> keys ?
+(empty list or set)
+127.0.0.1:6379> keys ???
+1) "bar"
+2) "foo"
+127.0.0.1:6379> exsits bar
+(error) ERR unknown command 'exsits'
+127.0.0.1:6379> exits bar
+(error) ERR unknown command 'exits'
+127.0.0.1:6379> exists bar
+(integer) 1
+127.0.0.1:6379> exists barf
+(integer) 0
+127.0.0.1:6379> delete bar
+(error) ERR unknown command 'delete'
+127.0.0.1:6379> del bar
+(integer) 1
+127.0.0.1:6379> keys *
+1) "foo"
+127.0.0.1:6379> type foo
+string
+127.0.0.1:6379> lpush bar 1
+(integer) 1
+127.0.0.1:6379> type bar
+list
+127.0.0.1:6379> incrby bar 2
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+127.0.0.1:6379> incrby bar 2
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+127.0.0.1:6379> get bar
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+127.0.0.1:6379> set ho 1
+OK
+127.0.0.1:6379> get ho
+"1"
+127.0.0.1:6379> get bar
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+127.0.0.1:6379> type bar
+list
+127.0.0.1:6379> keys *
+1) "bar"
+2) "foo"
+3) "ho"
+4) "name"
+127.0.0.1:6379> get bar[0]
+(nil)
+127.0.0.1:6379> get bar[1]
+(nil)
+127.0.0.1:6379> del bar
+(integer) 1
+127.0.0.1:6379> keys *
+1) "foo"
+2) "ho"
+3) "name"
+127.0.0.1:6379> incrby bar 2
+(integer) 2
+127.0.0.1:6379> decrby bar 2
+(integer) 0
+127.0.0.1:6379> incrbyfloat bar 2.7
+"2.7"
+127.0.0.1:6379> decrybyfloat bar 2.7
+(error) ERR unknown command 'decrybyfloat'
+127.0.0.1:6379> set key hello
+OK
+127.0.0.1:6379> append key " world"
+(integer) 11
+127.0.0.1:6379> get key
+"hello world"
+127.0.0.1:6379> strlen key
+(integer) 11
+127.0.0.1:6379> set key "你好"
+OK
+127.0.0.1:6379> strlen key
+(integer) 6
+127.0.0.1:6379> get key
+"\xe4\xbd\xa0\xe5\xa5\xbd"
+127.0.0.1:6379> mset key1 v1 key2 v2 key3 v3 key4 v4
+OK
+127.0.0.1:6379> mset key1 v1 key2 v2 key3 v3 key4 v4
+OK
+127.0.0.1:6379> mget key1 key3
+1) "v1"
+2) "v3"
+127.0.0.1:6379> set foo bar
+OK
+127.0.0.1:6379> getbit foo 0
+(integer) 0
+127.0.0.1:6379> getbit foo 6
+(integer) 1
+127.0.0.1:6379> getbit foo 19999
+(integer) 0
+127.0.0.1:6379> setbit foo 6 0
+(integer) 1
+127.0.0.1:6379> setbit foo 7 1
+(integer) 0
+127.0.0.1:6379> get foo
+"aar"
+127.0.0.1:6379> bitcount foo
+(integer) 10
+127.0.0.1:6379> bitcount foo 0 1
+(integer) 6
+127.0.0.1:6379> set foo1 bar
+OK
+127.0.0.1:6379> set foo2 aar
+OK
+127.0.0.1:6379> bitop or res foo1 foo2
+(integer) 3
+127.0.0.1:6379> bitop or res foo1 foo2
+(integer) 3
+127.0.0.1:6379> get res
+"car"
+127.0.0.1:6379> 
